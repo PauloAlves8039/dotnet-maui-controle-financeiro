@@ -3,9 +3,28 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C7478B22-769D-4B84-B985-0B5EB24B3099}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleFinanceiro", "src\ControleFinanceiro\ControleFinanceiro.csproj", "{1F6A67B9-8A11-4D6C-A0ED-19EDFA161A02}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F6A67B9-8A11-4D6C-A0ED-19EDFA161A02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F6A67B9-8A11-4D6C-A0ED-19EDFA161A02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F6A67B9-8A11-4D6C-A0ED-19EDFA161A02}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1F6A67B9-8A11-4D6C-A0ED-19EDFA161A02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F6A67B9-8A11-4D6C-A0ED-19EDFA161A02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F6A67B9-8A11-4D6C-A0ED-19EDFA161A02}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1F6A67B9-8A11-4D6C-A0ED-19EDFA161A02} = {C7478B22-769D-4B84-B985-0B5EB24B3099}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {319F4B20-67D0-4B77-89C9-16AE8D5AC2EB}
