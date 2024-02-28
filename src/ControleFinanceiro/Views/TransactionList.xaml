@@ -25,12 +25,68 @@
         </Grid>
         
         <Button 
-            Text="+" 
-            Clicked="OnButtonClicked_To_TransactionAdd" 
-            HorizontalOptions="Center" />
-        <Button 
             Text="Edit" 
             Clicked="OnButtonClicked_To_TransactionEdit"
             HorizontalOptions="Center" />
+
+        <Border
+            Margin="10"
+            Padding="10,15"
+            BackgroundColor="{StaticResource Black}"
+            StrokeShape="RoundRectangle 30"
+            StrokeThickness="0" >
+            <Grid ColumnDefinitions="*, 80" RowDefinitions="Auto, Auto, 30, Auto, Auto">
+                <Label 
+                    Text="Saldo"
+                    TextColor="#979797"
+                    FontSize="18"
+                    Margin="10,0"/>
+                <Label 
+                    Text="R$ 2.760,00"
+                    TextColor="#FFFFFF"
+                    FontSize="36"
+                    Margin="10,0"
+                    Grid.Row="1" />
+                <Button
+                    Text="+"
+                    FontSize="40"
+                    HeightRequest="54"
+                    WidthRequest="54"
+                    CornerRadius="27"
+                    Padding="0"
+                    Grid.RowSpan="2"
+                    Grid.Column="1"
+                    HorizontalOptions="Center"
+                    Clicked="OnButtonClicked_To_TransactionAdd"/>
+
+                <Label 
+                    Text="Receitas"
+                    FontSize="8"
+                    TextColor="#979797"
+                    Margin="10,0"
+                    Grid.Row="3" />
+                <Label 
+                    Text="R$ 3.600,00"
+                    FontSize="12"
+                    TextColor="#FFFFFF"
+                    Margin="10,0"
+                    Grid.Row="4" />
+                <Label 
+                    Text="Despesas"
+                    FontSize="8"
+                    TextColor="#979797"
+                    Margin="10,0"
+                    Grid.Row="3"
+                    Grid.Column="1" />
+                <Label 
+                    Text="R$ 840,00"
+                    FontSize="12"
+                    TextColor="#FFFFFF"
+                    Margin="10,0"
+                    Grid.Row="4"
+                    Grid.Column="1" />
+            </Grid>
+        </Border>
+        
     </VerticalStackLayout>
 </ContentPage>
