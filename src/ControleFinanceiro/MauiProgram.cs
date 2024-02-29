@@ -1,6 +1,7 @@
 ﻿using ControleFinanceiro.Configurations;
 using ControleFinanceiro.Repositories;
 using ControleFinanceiro.Repositories.Interfaces;
+using ControleFinanceiro.Views;
 using LiteDB;
 using Microsoft.Extensions.Logging;
 
@@ -18,7 +19,8 @@ namespace ControleFinanceiro
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 })
-                .RegisterDatabaseAndRepositories();
+                .RegisterDatabaseAndRepositories()
+                .RegisterViews();
 
             #if DEBUG
             builder.Logging.AddDebug();
@@ -35,6 +37,15 @@ namespace ControleFinanceiro
             });
 
             mauiAppBuilder.Services.AddTransient<ITransactionRepository, TransactionRepository>();
+            return mauiAppBuilder;
+        }
+
+        public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
+        {
+            mauiAppBuilder.Services.AddTransient<TransactionAdd>();
+            mauiAppBuilder.Services.AddTransient<TransactionEdit>();
+            mauiAppBuilder.Services.AddTransient<TransactionList>();
+
             return mauiAppBuilder;
         }
     }
