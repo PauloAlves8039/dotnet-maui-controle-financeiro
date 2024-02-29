@@ -1,12 +1,18 @@
+using ControleFinanceiro.Models;
+using ControleFinanceiro.Models.Enums;
+using ControleFinanceiro.Repositories.Interfaces;
 using System.Text;
 
 namespace ControleFinanceiro.Views;
 
 public partial class TransactionAdd : ContentPage
 {
-	public TransactionAdd()
+    private ITransactionRepository _repository;
+
+    public TransactionAdd(ITransactionRepository repository)
 	{
 		InitializeComponent();
+        _repository = repository;
 	}
 
     private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
@@ -16,7 +22,16 @@ public partial class TransactionAdd : ContentPage
 
     private void OnButtonClicked_Save(object sender, EventArgs e)
     {
+        if (IsValidData() == false) 
+        {
+            return;
+        }
 
+        SaveTransactionInDatabase();
+        Navigation.PopModalAsync();
+
+        var count = _repository.GetAll().Count;
+        App.Current.MainPage.DisplayAlert("Mensagem!", $"Existem {count} registro(s) no banco!", "OK");
     }
 
     private bool IsValidData() 
@@ -49,5 +64,18 @@ public partial class TransactionAdd : ContentPage
         }
 
         return valid;
+    }
+
+    private void SaveTransactionInDatabase() 
+    {
+        var transaction = new Transaction()
+        {
+            Type = RadioIncome.IsChecked ? TransactionType.Income : TransactionType.Expense,
+            Name =EntryName.Text,
+            Date = DatePickerDate.Date,
+            Value = double.Parse(EntryValue.Text)
+        };
+
+        _repository.Add(transaction);
     }
 }
