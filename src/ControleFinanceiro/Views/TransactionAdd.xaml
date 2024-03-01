@@ -33,7 +33,8 @@
         </Border>
 
         <Label 
-            x:Name="LabelError" 
+            x:Name="LabelError"
+            Margin="30,0"
             IsVisible="False" 
             TextColor="#FF0000" />
         
