@@ -9,23 +9,29 @@
     </ContentPage.Resources>        
     <VerticalStackLayout>
 
-        <Grid ColumnDefinitions="50, *, Auto">
-            <Label 
-                Text="S"
-                FontSize="20"
-                HorizontalOptions="Center" 
-                BackgroundColor="#FFFFFF"
-                VerticalOptions="Center"/>
-            <VerticalStackLayout Grid.Column="1">
-                <Label Text="Salário" />
-                <Label Text="10/10/2023" TextColor="#BABABA" />
-            </VerticalStackLayout>
-            <Label 
-                Text="R$ 3.600,00" 
-                Grid.Column="2"
-                TextColor="{StaticResource Tertiary}"
-                VerticalOptions="Center" />
-        </Grid>
+        <CollectionView x:Name="CollectionViewTransactions">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid ColumnDefinitions="50, *, Auto">
+                        <Label 
+                            Text="S"
+                            FontSize="20"
+                            HorizontalOptions="Center" 
+                            BackgroundColor="#FFFFFF"
+                            VerticalOptions="Center"/>
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="{Binding Name}" />
+                            <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}" TextColor="#BABABA" />
+                        </VerticalStackLayout>
+                        <Label 
+                            Text="{Binding Value, StringFormat='{0:C}'}" 
+                            Grid.Column="2"
+                            TextColor="{StaticResource Tertiary}"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
         
         <Button 
             Text="Edit" 
