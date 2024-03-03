@@ -1,3 +1,4 @@
+using CommunityToolkit.Mvvm.Messaging;
 using ControleFinanceiro.Repositories.Interfaces;
 
 namespace ControleFinanceiro.Views;
@@ -12,7 +13,12 @@ public partial class TransactionList : ContentPage
 
         InitializeComponent();
 
-        CollectionViewTransactions.ItemsSource = _repository.GetAll();
+        Reload();
+
+        WeakReferenceMessenger.Default.Register<string>(this, (e, msg) => 
+        {
+            Reload();
+        });
 	}
 
 	private void OnButtonClicked_To_TransactionAdd(object sender, EventArgs args) 
@@ -26,4 +32,9 @@ public partial class TransactionList : ContentPage
         var transactionEdit = Handler.MauiContext.Services.GetService<TransactionEdit>();
         Navigation.PushModalAsync(transactionEdit);
     }
+
+    private void Reload() 
+    {
+        CollectionViewTransactions.ItemsSource = _repository.GetAll();
+    } 
 }
