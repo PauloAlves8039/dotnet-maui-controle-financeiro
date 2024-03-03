@@ -51,7 +51,7 @@
                     FontSize="18"
                     Margin="10,0"/>
                 <Label 
-                    Text="R$ 2.760,00"
+                    x:Name="LabelBalance"
                     TextColor="#FFFFFF"
                     FontSize="36"
                     Margin="10,0"
@@ -75,7 +75,7 @@
                     Margin="10,0"
                     Grid.Row="3" />
                 <Label 
-                    Text="R$ 3.600,00"
+                    x:Name="LabelIncome"
                     FontSize="12"
                     TextColor="#FFFFFF"
                     Margin="10,0"
@@ -88,7 +88,7 @@
                     Grid.Row="3"
                     Grid.Column="1" />
                 <Label 
-                    Text="R$ 840,00"
+                    x:Name="LabelExpense"
                     FontSize="12"
                     TextColor="#FFFFFF"
                     Margin="10,0"

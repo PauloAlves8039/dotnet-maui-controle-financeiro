@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.Messaging;
+using ControleFinanceiro.Models.Enums;
 using ControleFinanceiro.Repositories.Interfaces;
 
 namespace ControleFinanceiro.Views;
@@ -35,6 +36,16 @@ public partial class TransactionList : ContentPage
 
     private void Reload() 
     {
-        CollectionViewTransactions.ItemsSource = _repository.GetAll();
+        var items = _repository.GetAll();
+        CollectionViewTransactions.ItemsSource = items;
+
+        var income = items.Where(a => a.Type == TransactionType.Income).Sum(a => a.Value);
+        var expense = items.Where(a => a.Type == TransactionType.Expense).Sum(a => a.Value);
+        var balance = income - expense;
+
+        LabelIncome.Text = income.ToString("C");
+        LabelExpense.Text = expense.ToString("C");
+        LabelBalance.Text = balance.ToString("C");
+
     } 
 }
