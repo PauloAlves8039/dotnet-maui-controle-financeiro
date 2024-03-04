@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.Messaging;
+using ControleFinanceiro.Models;
 using ControleFinanceiro.Models.Enums;
 using ControleFinanceiro.Repositories.Interfaces;
 
@@ -28,12 +29,6 @@ public partial class TransactionList : ContentPage
         Navigation.PushModalAsync(transactionAdd);
     }
 
-    private void OnButtonClicked_To_TransactionEdit(object sender, EventArgs e)
-    {
-        var transactionEdit = Handler.MauiContext.Services.GetService<TransactionEdit>();
-        Navigation.PushModalAsync(transactionEdit);
-    }
-
     private void Reload() 
     {
         var items = _repository.GetAll();
@@ -47,5 +42,16 @@ public partial class TransactionList : ContentPage
         LabelExpense.Text = expense.ToString("C");
         LabelBalance.Text = balance.ToString("C");
 
-    } 
+    }
+
+    private void TapGestureRecognizerTapped_To_TransactionEdit(object sender, TappedEventArgs e)
+    {
+        var grid = (Grid)sender;
+        var gesture = (TapGestureRecognizer)grid.GestureRecognizers[0];
+        Transaction transaction = (Transaction)gesture.CommandParameter;
+        
+        var transactionEdit = Handler.MauiContext.Services.GetService<TransactionEdit>();
+        transactionEdit.SetTransactionToEdit(transaction);
+        Navigation.PushModalAsync(transactionEdit);
+    }
 }

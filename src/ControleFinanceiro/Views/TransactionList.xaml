@@ -12,7 +12,12 @@
         <CollectionView x:Name="CollectionViewTransactions">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid ColumnDefinitions="50, *, Auto">
+                    <Grid Padding="15" ColumnDefinitions="50, *, Auto">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                CommandParameter="{Binding .}"
+                                Tapped="TapGestureRecognizerTapped_To_TransactionEdit" />
+                        </Grid.GestureRecognizers>
                         <Label 
                             Text="S"
                             FontSize="20"
@@ -33,11 +38,6 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
         
-        <Button 
-            Text="Edit" 
-            Clicked="OnButtonClicked_To_TransactionEdit"
-            HorizontalOptions="Center" />
-
         <Border
             Margin="10"
             Padding="10,15"
