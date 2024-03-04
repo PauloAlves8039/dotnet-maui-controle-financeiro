@@ -5,11 +5,11 @@
              Title="TransactionEdit">
     <VerticalStackLayout Spacing="10">
         <Border 
-        BackgroundColor="#000000" 
-        Margin="15"
-        Padding="15"
-        Stroke="Transparent"
-        StrokeShape="RoundRectangle 30">
+            BackgroundColor="#000000" 
+            Margin="15"
+            Padding="15"
+            Stroke="Transparent"
+            StrokeShape="RoundRectangle 30">
             <Grid RowDefinitions="Auto" ColumnDefinitions="*, 30">
                 <Label 
                     HorizontalOptions="Center"
@@ -26,11 +26,17 @@
                     WidthRequest="17"
                     HeightRequest="17">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        <TapGestureRecognizer Tapped="TapGestureRecognizerTapped_ToClose" />
                     </Image.GestureRecognizers>
                 </Image>
             </Grid>
         </Border>
+
+        <Label 
+            x:Name="LabelError"
+            Margin="30,0"
+            IsVisible="False" 
+            TextColor="#FF0000" />
 
         <Grid ColumnDefinitions="*,*" Margin="30, 10">
             <RadioButton 
@@ -39,23 +45,29 @@
                 Content="Receita" />
             <RadioButton 
                 x:Name="RadioExpense"
-                HorizontalOptions="End" 
+                Content="Despesa"
                 Grid.Column="1" 
-                Content="Despesa" />
+                HorizontalOptions="End" />
         </Grid>
 
         <Entry 
-            x:Name="EntryName" 
-            Placeholder="Nome" 
-            Margin="15, 0" />
+            x:Name="EntryName"
+            Margin="15, 0" 
+            Placeholder="Nome" />
 
-        <DatePicker x:Name="DatePickerDate" Margin="15, 0" />
+        <DatePicker 
+            x:Name="DatePickerDate"
+            Margin="15, 0" />
 
         <Entry 
-            x:Name="EntryValue" 
-            Placeholder="Valor" 
-            Margin="15, 0" />
+            x:Name="EntryValue"
+            Margin="15, 0" 
+            Placeholder="Valor" />
 
-        <Button Margin="15, 0" Text="Salvar" />
+        <Button 
+            Margin="15, 0" 
+            Text="Salvar" 
+            HorizontalOptions="Center"
+            Clicked="OnButtonClicked_Save" />   
     </VerticalStackLayout>
 </ContentPage>
