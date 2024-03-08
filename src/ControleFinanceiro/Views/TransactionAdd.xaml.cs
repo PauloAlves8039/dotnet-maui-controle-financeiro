@@ -1,3 +1,4 @@
+using CommunityToolkit.Mvvm.Messaging;
 using ControleFinanceiro.Models;
 using ControleFinanceiro.Models.Enums;
 using ControleFinanceiro.Repositories.Interfaces;
@@ -15,7 +16,7 @@ public partial class TransactionAdd : ContentPage
         _repository = repository;
 	}
 
-    private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    private void TapGestureRecognizerTapped_ToClose(object sender, TappedEventArgs e)
     {
 		Navigation.PopModalAsync();
     }
@@ -29,6 +30,8 @@ public partial class TransactionAdd : ContentPage
 
         SaveTransactionInDatabase();
         Navigation.PopModalAsync();
+
+        WeakReferenceMessenger.Default.Send<string>(string.Empty);
 
         var count = _repository.GetAll().Count;
         App.Current.MainPage.DisplayAlert("Mensagem!", $"Existem {count} registro(s) no banco!", "OK");

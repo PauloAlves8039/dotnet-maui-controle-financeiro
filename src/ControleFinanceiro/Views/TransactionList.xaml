@@ -2,36 +2,56 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ControleFinanceiro.Views.TransactionList"
+             xmlns:converters="clr-namespace:ControleFinanceiro.Libraries.Converters"
              Title="Listagem"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary Source="/Resources/Styles/Colors.xaml" />
+        <ResourceDictionary>
+            <converters:TransactionValueConverter x:Key="TransactionValueConverter" />
+            <converters:TransactionValueColorConverter x:Key="TransactionValueColorConverter" />
+        </ResourceDictionary>
     </ContentPage.Resources>        
     <VerticalStackLayout>
 
-        <Grid ColumnDefinitions="50, *, Auto">
-            <Label 
-                Text="S"
-                FontSize="20"
-                HorizontalOptions="Center" 
-                BackgroundColor="#FFFFFF"
-                VerticalOptions="Center"/>
-            <VerticalStackLayout Grid.Column="1">
-                <Label Text="Salário" />
-                <Label Text="10/10/2023" TextColor="#BABABA" />
-            </VerticalStackLayout>
-            <Label 
-                Text="R$ 3.600,00" 
-                Grid.Column="2"
-                TextColor="{StaticResource Tertiary}"
-                VerticalOptions="Center" />
-        </Grid>
+        <CollectionView x:Name="CollectionViewTransactions">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="15" ColumnDefinitions="50, *, Auto">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                CommandParameter="{Binding .}"
+                                Tapped="TapGestureRecognizerTapped_To_TransactionEdit" />
+                        </Grid.GestureRecognizers>
+                        <Border
+                            WidthRequest="40"
+                            HeightRequest="40"
+                            BackgroundColor="#FFFFFF"
+                            Stroke="Transparent"
+                            StrokeShape="RoundRectangle 20" >
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="TapGestureRecognizerTapped_ToDelete" />
+                            </Border.GestureRecognizers>
+                            <Label 
+                                Text="X"
+                                FontSize="20"
+                                Padding="2"
+                                Margin="11,2" />
+                        </Border>
+                        <VerticalStackLayout Grid.Column="1">
+                            <Label Text="{Binding Name}" />
+                            <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}" TextColor="#BABABA" />
+                        </VerticalStackLayout>
+                        <Label 
+                            Text="{Binding ., Converter={StaticResource TransactionValueConverter}}" 
+                            TextColor="{Binding ., Converter={StaticResource TransactionValueColorConverter}}"
+                            Grid.Column="2"
+                            VerticalOptions="Center" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
         
-        <Button 
-            Text="Edit" 
-            Clicked="OnButtonClicked_To_TransactionEdit"
-            HorizontalOptions="Center" />
-
         <Border
             Margin="10"
             Padding="10,15"
@@ -45,7 +65,7 @@
                     FontSize="18"
                     Margin="10,0"/>
                 <Label 
-                    Text="R$ 2.760,00"
+                    x:Name="LabelBalance"
                     TextColor="#FFFFFF"
                     FontSize="36"
                     Margin="10,0"
@@ -69,7 +89,7 @@
                     Margin="10,0"
                     Grid.Row="3" />
                 <Label 
-                    Text="R$ 3.600,00"
+                    x:Name="LabelIncome"
                     FontSize="12"
                     TextColor="#FFFFFF"
                     Margin="10,0"
@@ -82,7 +102,7 @@
                     Grid.Row="3"
                     Grid.Column="1" />
                 <Label 
-                    Text="R$ 840,00"
+                    x:Name="LabelExpense"
                     FontSize="12"
                     TextColor="#FFFFFF"
                     Margin="10,0"
