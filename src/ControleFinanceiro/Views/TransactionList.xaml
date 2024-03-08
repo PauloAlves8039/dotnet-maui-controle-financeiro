@@ -23,12 +23,21 @@
                                 CommandParameter="{Binding .}"
                                 Tapped="TapGestureRecognizerTapped_To_TransactionEdit" />
                         </Grid.GestureRecognizers>
-                        <Label 
-                            Text="S"
-                            FontSize="20"
-                            HorizontalOptions="Center" 
+                        <Border
+                            WidthRequest="40"
+                            HeightRequest="40"
                             BackgroundColor="#FFFFFF"
-                            VerticalOptions="Center"/>
+                            Stroke="Transparent"
+                            StrokeShape="RoundRectangle 20" >
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}" Tapped="TapGestureRecognizerTapped_ToDelete" />
+                            </Border.GestureRecognizers>
+                            <Label 
+                                Text="X"
+                                FontSize="20"
+                                Padding="2"
+                                Margin="11,2" />
+                        </Border>
                         <VerticalStackLayout Grid.Column="1">
                             <Label Text="{Binding Name}" />
                             <Label Text="{Binding Date, StringFormat='{0:dd/MM/yyyy}'}" TextColor="#BABABA" />
