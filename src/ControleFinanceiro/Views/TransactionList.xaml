@@ -74,7 +74,7 @@
                     Grid.Row="1" />
                 <Button
                     Text="+"
-                    FontSize="40"
+                    FontSize="{OnPlatform Default=40, Android=38}"
                     HeightRequest="54"
                     WidthRequest="54"
                     CornerRadius="27"
