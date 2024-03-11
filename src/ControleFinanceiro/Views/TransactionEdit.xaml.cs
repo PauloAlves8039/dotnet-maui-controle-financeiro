@@ -37,6 +37,8 @@ public partial class TransactionEdit : ContentPage
 
     private void TapGestureRecognizerTapped_ToClose(object sender, TappedEventArgs e)
     {
+        EntryName.Unfocus();
+        EntryValue.Unfocus();
         Navigation.PopModalAsync();
     }
 
@@ -46,7 +48,10 @@ public partial class TransactionEdit : ContentPage
         {
             return;
         }
-            
+
+        EntryName.Unfocus();
+        EntryValue.Unfocus();
+
         SaveTransactionInDatabase();
 
         Navigation.PopModalAsync();
