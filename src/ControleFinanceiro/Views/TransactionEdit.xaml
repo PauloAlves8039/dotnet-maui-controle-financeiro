@@ -36,7 +36,7 @@
             x:Name="LabelError"
             Margin="30,0"
             IsVisible="False" 
-            TextColor="#FF0000" />
+            TextColor="{AppThemeBinding Light='#FF0000', Dark='#F37474'}" />
 
         <Grid ColumnDefinitions="*,*" Margin="30, 10">
             <RadioButton 
