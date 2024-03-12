@@ -37,6 +37,8 @@ public partial class TransactionEdit : ContentPage
 
     private void TapGestureRecognizerTapped_ToClose(object sender, TappedEventArgs e)
     {
+        EntryName.Unfocus();
+        EntryValue.Unfocus();
         Navigation.PopModalAsync();
     }
 
@@ -46,7 +48,10 @@ public partial class TransactionEdit : ContentPage
         {
             return;
         }
-            
+
+        EntryName.Unfocus();
+        EntryValue.Unfocus();
+
         SaveTransactionInDatabase();
 
         Navigation.PopModalAsync();
@@ -94,7 +99,7 @@ public partial class TransactionEdit : ContentPage
             Type = RadioIncome.IsChecked ? TransactionType.Income : TransactionType.Expense,
             Name = EntryName.Text,
             Date = DatePickerDate.Date,
-            Value = double.Parse(EntryValue.Text)
+            Value = Math.Abs(double.Parse(EntryValue.Text))
         };
 
         _repository.Update(transaction);
