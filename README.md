@@ -7,19 +7,34 @@
 
 ## :computer: Projeto
 
-Aplicação mobile para simular um `controle financeiro`.
+Aplicação mobile para simular um `controle financeiro`, o código fonte do projeto foi baseado no curso [.NET MAUI - Desenvolvendo um App de Controle Financeiro](https://www.udemy.com/course/net-maui-desenvolvendo-um-app-de-controle-financeiro/?kw=.net+maui&src=sac&couponCode=ST15MT31224).
+
+## :blue_book: Regra de Negócio
+
+Esse projeto dispõe do uso de um `CRUD`, as funcionalidades referentes as `transações` de `receitas` e `despesas` implementadas são:
+
+- Adicionar registro.
+- Exibir lista de resgistros.
+- Selecionar registro.
+- Atualizar registro.
+- Excluir registro.
 
 ## ✔️ Recursos Utilizados
 
 - `.NET 7.0`
 - `.NET MAUI`
 - `C#`
+- `LiteDB`
 
 ## :floppy_disk: Clonar Repositório
 
 ```bash
 git clone https://github.com/PauloAlves8039/dotnet-maui-controle-financeiro.git
 ```
+
+## :camera: Screenshot
+
+<p align="center"> <img src="https://github.com/PauloAlves8039/dotnet-maui-controle-financeiro/blob/master/src/ControleFinanceiro/Resources/Images/screenshot.png" style="width:400px;" /> </p>
 
 ## :boy: Author
 
